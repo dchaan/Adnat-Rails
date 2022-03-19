@@ -5,9 +5,17 @@
   <% for org in Organization.order(created_at: :desc).all %>
     <li>
       <%= org.name %>
-      <%= link_to "Edit", edit_organization_path(@organization.id) %>
-      <%= link_to "Join", join_org_path(@organization.id), :method => :put %>
-
+      <%= link_to "Edit", edit_organization_path(:id => organization.id) %>
+      <%= link_to "Join", join_org_path(:id => organization.id), :method => :put %>
     </li>
   <% end %>
 </ul>
+
+<h2>Create Organization</h2>
+<% form_with model: @organization, local: true do |f| %>
+  <%= f.label "Name" %>
+  <%= f.text_field :name, placeholder: "Name" %>
+  <%= f.label "Hourly Rate $" %>
+  <%= f.number_field :hourly_rate, in: 1..1000000, step: 1, placeholder: "0"%>
+  <p class="btn"> <%= f.submit "Create & Join!" %></p>
+<% end %>
