@@ -5,6 +5,7 @@ class OrganizationsController < ApplicationController
       User.update(current_user.id, organization_id: organization.id)
       redirect_to overview_path
     else
+      flash.alert = "Invalid name or hourly rate!"
       redirect_to welcome_path
     end
   end
