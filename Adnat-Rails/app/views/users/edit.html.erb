@@ -1,0 +1,14 @@
+<h2>Edit User</h2>
+<%= form_with model: @user, local: true do |f| %>
+  <ul>
+    <% for error in @user.errors.full_messages%>
+      <li><%= error %></l1>
+    <%= end %>
+  </ul>
+
+  <%= f.label "Name" %>
+  <%= f.text_field :name %><br/>
+  <%= f.label "Email" %>
+  <%= f.text_field :email%>
+  <p class="btn"><%= f.submit "Update" %></p>
+<% end %>
