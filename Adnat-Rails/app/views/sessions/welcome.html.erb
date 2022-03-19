@@ -1,0 +1,13 @@
+<p class="join-or-create">You aren't a member of any organization. Join an existing one or create a new one!</p>
+
+<h2>Organizations</h2>
+<ul class="org-list">
+  <% for org in Organization.order(created_at: :desc).all %>
+    <li>
+      <%= org.name %>
+      <%= link_to "Edit", edit_organization_path(@organization.id) %>
+      <%= link_to "Join", join_org_path(@organization.id), :method => :put %>
+
+    </li>
+  <% end %>
+</ul>
