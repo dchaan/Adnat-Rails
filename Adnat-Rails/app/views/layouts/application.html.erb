@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <a href="/"><h1>Adnat</h1>
+    <div class="nav-container">
+      <% if current_user %>
+        Logged in as <%= current_user.name %><br/>
+        <%= link_to "Logout", logout_path %>
+        <%= link_to "Edit profile", edit_user_path(:id => current_user.id) %>
+      <% end %>
+    </div>
+    <% flash.each do |name, msg| %>
+      <% content_tag :div, msg, :id => "#{name}" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
