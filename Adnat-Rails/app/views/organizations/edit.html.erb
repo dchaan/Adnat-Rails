@@ -1,0 +1,15 @@
+<h2>Edit Organization</h2>
+
+<% form_with model: @organization, local: true do |f| %>
+  <ul>
+    <% for error in @organization.errors.full_messages%>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <%= f.label "Name" %>
+  <%= f.text_field :name %><br/>
+  <%= f.label "Hourly Rate $" %>
+  <%= f.number_field :hourly_rate, in: 1..1000000, step: 1 %><br/>
+  <p class="btn"><%= f.submit "Update"%></p>
+<% end %>
+<%= link_to "Delete", organization_path(id: @organization.id), :method => :delete, data: { confirm: "Are you sure?" } %>
