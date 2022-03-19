@@ -1,0 +1,19 @@
+<h2>Signup</h2>
+
+<% form_with model: @user, local: true do |f| %>
+  <ul class="errors">
+    <% for error in @user.errors.full_messages %>
+      <li><%= error %></li>
+    <% end %>
+  <ul>
+  <%= f.label "Name" %><br/>
+  <%= f.text_field :name, placeholder: "Name" %><br/><br/>
+  <%= f.label "Email" %><br/>
+  <%= f.text_field :email, placeholder: "Email" %><br/><br/>
+  <%= f.label "Password" %><br/>
+  <%= f.password_field :password, placeholder: "6 characters minimum" %><br/><br/>
+  <%= f.label "Confirm Password" %><br/>
+  <%= f.password_field :password_confirmation, placeholder: "Re-enter password"%>
+  <p class="btn"><%= f.submit "Signup"%>
+  <%= link_to "Already have an account? Login!", login_path%>
+<% end %>
