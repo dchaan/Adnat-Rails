@@ -1,0 +1,10 @@
+<h2>Login</h2>
+
+<% form_with url: new_session_path, method: :get do |f| %>
+  <%= f.label "Email"%><br/>
+  <%= f.text_field :email %><br/>
+  <%= f.label "Password" %><br/>
+  <%= f.password_field :password %>
+  <p class="btn"><%= f.submit "Login"%></p>
+  <%= link_to "Signup", signup_path %>
+<% end %>
