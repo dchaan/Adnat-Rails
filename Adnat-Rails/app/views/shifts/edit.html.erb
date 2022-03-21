@@ -1,0 +1,31 @@
+<h2>Edit Shift</h2>
+<%= form_with model: @user, local: true, scope: :shift do |f| %>
+  <ul>
+    <% for error in @shift.errors.full_messages %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Shift Date</th>
+        <th>Start Time</th>
+        <th>Finish Time</th>
+        <th>Break Length (min)</th>
+        <th>Hours Worked</th>
+        <th>Shift Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><%= current_user.name %></td>
+      <td><%= f.date_field :date %></td>
+      <td><%= f.time_field :start %></td>
+      <td><%= f.time_field :finish %></td>
+      <td><%= f.number_field :break_length %></td>
+      <td><%= f.submit "Update" %></td>
+      <td></td>
+    </tr>
+  </table>
+<% end %>

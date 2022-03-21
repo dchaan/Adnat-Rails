@@ -1,0 +1,49 @@
+<h2><%= @organization.name %></h2>
+<%= form_with model: @shift, local: true, scope: :shift do |f| %>
+  <ul>
+    <% for error in @shift.errors.full_messages %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Shift Date</th>
+        <th>Start Time</th>
+        <th>Finish Time</th>
+        <th>Break Length (min)</th>
+        <th>Hours Worked</th>
+        <th>Shift Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% shifts.each do |shift| %>
+        <tr>
+          <td><%= @names[shift] %></td>
+          <td><%= shift.start.strftime("%m/%d/%Y") %></td>
+          <td><%= shift.start.strftime("%I:%M%p") %></td>
+          <td><%= shift.finish.strftime("%I:%M%p") %></td>
+          <td><%= shift.break_length %></td>
+          <td><%= @hours_worked[shift] %></td>
+          <td><%= @shift_costs[shift] %></td>
+          
+          <%= if shift.user_id b== current_user.id %>
+            <td>
+              <%= link_to "Edit", edit_shift_path(:id => shift.id) %><br/>
+              <%= link_to "Delete", shift_path(id: shift.id), :method => :delete %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      <tr>
+        <td><%= current_user.name %></td>
+        <td><%= f.date_field :date %></td>
+        <td><%= f.time_field :start %></td>
+        <td><%= f.time_field :finish %></td>
+        <td><%= f.number_field :break_length, :value => 0 %></td>
+        <td><%= f.submit "Create Shift" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
