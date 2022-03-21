@@ -1,5 +1,5 @@
 <h2>Edit Shift</h2>
-<%= form_with model: @user, local: true, scope: :shift do |f| %>
+<%= form_with model: @shift, local: true, scope: :shift do |f| %>
   <ul>
     <% for error in @shift.errors.full_messages %>
       <li><%= error %></li>

@@ -6,16 +6,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(:email, params[:email])
+    user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
-      session[:user_id] = user.user_id
+      session[:user_id] = user.id
       if user.organization_id == nil
         redirect_to welcome_path
       else
         redirect_to overview_path
       end
     else
-      flash.alert = "Invalid email or password!"
       render :new
     end
   end
@@ -34,7 +33,7 @@ class SessionsController < ApplicationController
   end
 
   def overview
-    if current_user.organization_id == nil
+    if current_user.organization_id != nil
       @organization= Organization.find(current_user.organization_id)
     else
       redirect_to overview_path

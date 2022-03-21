@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <% shifts.each do |shift| %>
+      <% @shifts.each do |shift| %>
         <tr>
           <td><%= @names[shift] %></td>
           <td><%= shift.start.strftime("%m/%d/%Y") %></td>
@@ -26,12 +26,12 @@
           <td><%= shift.finish.strftime("%I:%M%p") %></td>
           <td><%= shift.break_length %></td>
           <td><%= @hours_worked[shift] %></td>
-          <td><%= @shift_costs[shift] %></td>
+          <td>$<%= @shift_costs[shift] %></td>
           
-          <%= if shift.user_id b== current_user.id %>
+          <% if shift.user_id == current_user.id %>
             <td>
-              <%= link_to "Edit", edit_shift_path(:id => shift.id) %><br/>
-              <%= link_to "Delete", shift_path(id: shift.id), :method => :delete %>
+              <%= link_to "Edit", edit_shift_path(:id => shift.id) %>
+              <%= link_to "Delete", shift_path(id: shift.id), :method => :delete, data: {confirm: "Are you sure?"} %>
             </td>
           <% end %>
         </tr>

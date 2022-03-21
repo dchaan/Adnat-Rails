@@ -1,6 +1,7 @@
 class ShiftsController < ApplicationController
   def index
     @shift = Shift.new
+    shift_details
   end
 
   def create
@@ -35,7 +36,7 @@ class ShiftsController < ApplicationController
       finish: finish_time,
       break_length: shift_params[:break_length]
     )
-    if @shifts.errors.any?
+    if @shift.errors.any?
       render :edit
     else
       redirect_to shifts_path
@@ -67,7 +68,7 @@ class ShiftsController < ApplicationController
   end
 
   # calc shift cost
-  def get_shift_cost(start, finish, hours, rate, break)
+  def get_shift_cost(start, finish, hours, rate, break_hrs)
     sum_hours = 0
     norm_hours = 0
     if start < finish
@@ -77,7 +78,7 @@ class ShiftsController < ApplicationController
         norm_hours = hours
       end
     else
-      real_finish = finish.next_day() - (60 * 60 * break)
+      real_finish = finish.next_day() - (60 * 60 * break_hrs)
       diff = 0
       if start.sunday? && real_finish.monday?
         diff = (start.seconds_until_end_of_day + 1) / 60 / 60
@@ -109,7 +110,7 @@ class ShiftsController < ApplicationController
       shift_duration = get_shift_duration(shift.start, shift.finish)
       hours_worked = shift_duration - break_l
       shift_cost = get_shift_cost(shift.start, shift.finish, hours_worked, @organization.hourly_rate, break_l)
-      @names[shift] = User.find(shift.user_id).names
+      @names[shift] = User.find(shift.user_id).name
       @hours_worked[shift] = hours_worked.round(2)
       @shift_costs[shift] = shift_cost.round(2)
     end
