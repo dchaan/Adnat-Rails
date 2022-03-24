@@ -1,3 +1,12 @@
+# Project Setup
+
+Navigate to root directory of project and run these commands: <br/>
+`bundle install` <br/>
+`rails db:migrate`<br/>
+`rails s`
+<br/>
+The app will be hosted on http://localhost:3000
+
 # Adnat (Ruby on Rails challenge)
 
 For this challenge you will be creating highly simplified version of the Tanda web app from scratch using [Ruby on Rails](https://rubyonrails.org/). This is a Ruby on Rails challenge, so you don't need to worry about design too much. You should use Git as you build your solution. For submission you are asked to push your repo to GitHub and provide us with the link and any necessary instructions.
