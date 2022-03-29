@@ -25,18 +25,11 @@ class SessionsController < ApplicationController
   end
 
   def welcome
-    if current_user.organization_id == nil
-      @organization = Organization.new
-    else
-      redirect_to welcome_path
-    end
+    @organization = Organization.new if current_user.organization_id == nil
+    
   end
 
   def overview
-    if current_user.organization_id != nil
-      @organization= Organization.find(current_user.organization_id)
-    else
-      redirect_to overview_path
-    end
+    @organization = Organization.find(current_user.organization_id) if current_user.organization_id != nil
   end
 end
