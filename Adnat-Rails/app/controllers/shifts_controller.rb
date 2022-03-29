@@ -54,6 +54,7 @@ class ShiftsController < ApplicationController
     params.require(:shift).permit(:date, :start, :finish, :break_length)
   end
 
+  
   def get_date_time(date, time)
     Time.zone.parse(date + " " + time)
   end
@@ -69,7 +70,7 @@ class ShiftsController < ApplicationController
 
   # calc shift cost
   def get_shift_cost(start, finish, hours, rate, break_hrs)
-    sum_hours = 0
+    sun_hours = 0
     norm_hours = 0
     if start < finish
       if start.sunday?
@@ -79,14 +80,13 @@ class ShiftsController < ApplicationController
       end
     else
       real_finish = finish.next_day() - (60 * 60 * break_hrs)
-      diff = 0
+      # sunday shift cost
       if start.sunday? && real_finish.monday?
-        diff = (start.seconds_until_end_of_day + 1) / 60 / 60
+        sun_hours = (start.seconds_until_end_of_day + 1) / 60 / 60
       elsif start.saturday? && real_finish.sunday?
-        diff = real_finish.seconds_since_midnight / 60 / 60
+        sun_hours = real_finish.seconds_since_midnight / 60 / 60
       end
-      sun_hours = diff
-      norm_hours = hours - diff
+      norm_hours = hours - sun_hours
     end
     return (norm_hours * rate) + (2 * sun_hours * rate)
   end

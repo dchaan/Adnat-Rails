@@ -1,6 +1,6 @@
 <h2>Edit Organization</h2>
 
-<% form_with model: @organization, local: true do |f| %>
+<%= form_with model: @organization, local: true do |f| %>
   <ul>
     <% for error in @organization.errors.full_messages%>
       <li><%= error %></li>
