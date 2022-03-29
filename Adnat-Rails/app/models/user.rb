@@ -7,6 +7,6 @@ class User < ApplicationRecord
   validates_confirmation_of :password
   validates :password, presence: true, :on => :create
 
-  has_many :shifts, dependent: :delete_all, inverse_of: :user
+  has_many :shifts, dependent: :delete_all
   belongs_to :organization, optional: true
 end
