@@ -13,9 +13,9 @@
     <a href="/"><h1>Adnat</h1></a>
     <div class="nav-container">
       <% if current_user %>
-        Logged in as <%= current_user.name %><br/>
+        Logged in as <b><%= current_user.name %></b><br/>
         <%= link_to "Logout", logout_path %>
-        <%= link_to "Edit profile", edit_user_path(:id => current_user.id) %>
+        <%= link_to "Edit", edit_user_path(:id => current_user.id) %>
       <% end %>
     </div><br/>
     <% flash.each do |name, msg| %>
