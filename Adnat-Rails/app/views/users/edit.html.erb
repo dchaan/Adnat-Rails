@@ -2,7 +2,7 @@
 <%= form_with model: @user, local: true do |f| %>
   <ul>
     <% for error in @user.errors.full_messages%>
-      <li><%= error %></l1>
+      <li><%= error %></li>
     <% end %>
   </ul>
 
