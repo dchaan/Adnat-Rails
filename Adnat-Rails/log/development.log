@@ -4817,3 +4817,107 @@ Processing by ShiftsController#index as HTML
 Completed 200 OK in 91ms (Views: 21.4ms | ActiveRecord: 6.6ms | Allocations: 12242)
 
 
+Started GET "/" for ::1 at 2022-03-30 10:40:23 -0700
+  [1m[35m (11.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#overview as HTML
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mOrganization Load (1.2ms)[0m  [1m[34mSELECT "organizations".* FROM "organizations" WHERE "organizations"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:33:in `overview'
+  Rendering sessions/overview.html.erb within layouts/application
+  Rendered sessions/overview.html.erb within layouts/application (Duration: 1.6ms | Allocations: 618)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 156ms (Views: 46.8ms | ActiveRecord: 67.6ms | Allocations: 31242)
+
+
+Started GET "/shifts" for ::1 at 2022-03-30 10:40:25 -0700
+Processing by ShiftsController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mOrganization Load (0.7ms)[0m  [1m[34mSELECT "organizations".* FROM "organizations" WHERE "organizations"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/shifts_controller.rb:107:in `shift_details'
+  [1m[35mSQL (10.7ms)[0m  [1m[34mSELECT "shifts"."id" AS t0_r0, "shifts"."start" AS t0_r1, "shifts"."finish" AS t0_r2, "shifts"."break_length" AS t0_r3, "shifts"."user_id" AS t0_r4, "shifts"."created_at" AS t0_r5, "shifts"."updated_at" AS t0_r6, "users"."id" AS t1_r0, "users"."name" AS t1_r1, "users"."email" AS t1_r2, "users"."password_digest" AS t1_r3, "users"."organization_id" AS t1_r4, "users"."created_at" AS t1_r5, "users"."updated_at" AS t1_r6 FROM "shifts" LEFT OUTER JOIN "users" ON "users"."id" = "shifts"."user_id" WHERE "users"."organization_id" = $1 ORDER BY "shifts"."start" ASC[0m  [["organization_id", 4]]
+  ↳ app/controllers/shifts_controller.rb:116:in `shift_details'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shifts_controller.rb:126:in `block in shift_details'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shifts_controller.rb:126:in `block in shift_details'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shifts_controller.rb:126:in `block in shift_details'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shifts_controller.rb:126:in `block in shift_details'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shifts_controller.rb:126:in `block in shift_details'
+  Rendering shifts/index.html.erb within layouts/application
+  Rendered shifts/index.html.erb within layouts/application (Duration: 5.8ms | Allocations: 2891)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 107ms (Views: 22.1ms | ActiveRecord: 24.5ms | Allocations: 23984)
+
+
+Started GET "/" for ::1 at 2022-03-30 10:40:26 -0700
+Processing by SessionsController#overview as HTML
+  [1m[36mUser Load (6.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mOrganization Load (0.8ms)[0m  [1m[34mSELECT "organizations".* FROM "organizations" WHERE "organizations"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:33:in `overview'
+  Rendering sessions/overview.html.erb within layouts/application
+  Rendered sessions/overview.html.erb within layouts/application (Duration: 0.8ms | Allocations: 159)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 60ms (Views: 43.1ms | ActiveRecord: 7.2ms | Allocations: 5889)
+
+
+Started PUT "/leave/4" for ::1 at 2022-03-30 10:40:28 -0700
+Processing by UsersController#leave_org as HTML
+  Parameters: {"authenticity_token"=>"Zam850ooef/+XQTBOMHgOBftgswtang6SrGq0lJ01rfOHLRF/cYfe64v4hDybs8Al4NaHfZU2TKPXRQ446j3eg==", "id"=>"4"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:38:in `leave_org'
+  [1m[35m (5.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:38:in `leave_org'
+  [1m[36mUser Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@demo.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:38:in `leave_org'
+  [1m[36mUser Update (11.5ms)[0m  [1m[33mUPDATE "users" SET "organization_id" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["organization_id", nil], ["updated_at", "2022-03-30 17:40:28.582775"], ["id", 1]]
+  ↳ app/controllers/users_controller.rb:38:in `leave_org'
+  [1m[35m (9.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:38:in `leave_org'
+Redirected to http://localhost:3000/welcome
+Completed 302 Found in 48ms (ActiveRecord: 30.3ms | Allocations: 5832)
+
+
+Started GET "/welcome" for ::1 at 2022-03-30 10:40:28 -0700
+Processing by SessionsController#welcome as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering sessions/welcome.html.erb within layouts/application
+  [1m[36mOrganization Load (1.0ms)[0m  [1m[34mSELECT "organizations".* FROM "organizations" ORDER BY "organizations"."created_at" DESC[0m
+  ↳ app/views/sessions/welcome.html.erb:5
+  Rendered sessions/welcome.html.erb within layouts/application (Duration: 12.0ms | Allocations: 4161)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 18.6ms | ActiveRecord: 1.5ms | Allocations: 9458)
+
+
+Started GET "/welcome" for ::1 at 2022-03-30 10:40:38 -0700
+Processing by SessionsController#welcome as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering sessions/welcome.html.erb within layouts/application
+  [1m[36mOrganization Load (1.1ms)[0m  [1m[34mSELECT "organizations".* FROM "organizations" ORDER BY "organizations"."created_at" DESC[0m
+  ↳ app/views/sessions/welcome.html.erb:5
+  Rendered sessions/welcome.html.erb within layouts/application (Duration: 13.3ms | Allocations: 2097)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 75ms (Views: 64.4ms | ActiveRecord: 2.2ms | Allocations: 8324)
+
+
+Started GET "/welcome" for ::1 at 2022-03-30 10:40:56 -0700
+Processing by SessionsController#welcome as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering sessions/welcome.html.erb within layouts/application
+  [1m[36mOrganization Load (0.8ms)[0m  [1m[34mSELECT "organizations".* FROM "organizations" ORDER BY "organizations"."created_at" DESC[0m
+  ↳ app/views/sessions/welcome.html.erb:5
+  Rendered sessions/welcome.html.erb within layouts/application (Duration: 14.2ms | Allocations: 2176)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 60ms (Views: 36.3ms | ActiveRecord: 2.1ms | Allocations: 8406)
+
+
