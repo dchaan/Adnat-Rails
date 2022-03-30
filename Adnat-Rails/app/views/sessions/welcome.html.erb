@@ -15,7 +15,7 @@
 <%= form_with model: @organization, local: true do |f| %>
   <%= f.label "Name" %>
   <%= f.text_field :name, placeholder: "Name" %>
-  <%= f.label "Hourly Rate $" %>
+  <%= f.label "Hourly Rate $" %><br/>
   <%= f.number_field :hourly_rate, in: 1..1000000, step: 1, placeholder: "0"%>
   <p class="btn"> <%= f.submit "Create & Join!" %></p>
 <% end %>
